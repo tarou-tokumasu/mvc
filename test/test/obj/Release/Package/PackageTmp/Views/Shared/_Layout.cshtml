@@ -4,7 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - マイ ASP.NET アプリケーション</title>
+    <!--タブのとこに表示される名前の指定?-->
+    <title>@ViewBag.Title - ECサイト</title>
+   <!--
+    共通ページ
+    htmlbodyの宣言やcssの準備 デフォルトでboostrapが入ってるけどjavaで使ってる物だとうまく表示されない　何か違いが？
+    ＠なんたらでやられるのは全てRazor構文と呼ばれる埋め込み文
+    -->
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -17,12 +23,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("アプリケーション名", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <!--リンク飛ばす    テキスト   ｱｸｼｮﾝ　ｺﾝﾄﾛｰﾗ　アクション先への変数引き渡し（urlに?test=11みたいに渡される-->
+                @Html.ActionLink("ECサイト", "Index", "Home", new { test ="11" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <!--HomeコントローラのIndexアクションに飛ぶ-->
                     <li>@Html.ActionLink("ホーム", "Index", "Home")</li>
-                    <li>@Html.ActionLink("詳細", "About", "Home")</li>
+                    <!--
+                         これだとエラー 上のtest=11はセーフurlに?length=4と出ていた
+                         new～を入れた文は別の構成になるのでnull入れてやる
+                         <li>@Html.ActionLink("詳細", "About", "Home" , new { test = "11" })</li>
+                    -->
+                    <li>@Html.ActionLink("詳細", "About", "Home", new { test = "1" }, null)</li>
+                    <li>@Html.ActionLink("メンバ", "Index", "Members", new { test = "1" }, null)</li>
                     <li>@Html.ActionLink("問い合わせ", "Contact", "Home")</li>
                 </ul>
             </div>
@@ -32,7 +46,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - マイ ASP.NET アプリケーション</p>
+            <p>ここがフッター</p>
         </footer>
     </div>
 
