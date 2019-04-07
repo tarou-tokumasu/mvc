@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="testContext-Web.config Connection String" description="testContext データベースに接続するためにアプリケーションによって web.config で使用される接続文字列。" defaultValue="Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=testContext-20190404173021; Integrated Security=True; MultipleActiveResultSets=True; AttachDbFilename=|DataDirectory|testContext-20190404173021.mdf" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Sigoto\\source\\repos\\test\\test\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='testContext']/@connectionString" />
+  </parameter>
+</parameters>
