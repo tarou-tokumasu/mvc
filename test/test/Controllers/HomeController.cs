@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using test.Models;
 //Homeのこと
 namespace test.Controllers
 {
     public class HomeController : Controller
     {
+        private MvCContext db = new MvCContext();
 
         // "Controller"を排除した local/Homeに関するコントローラー
         //ActionResultはjavaのget
@@ -33,9 +35,8 @@ namespace test.Controllers
         // home/Contact
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
+            return View(db.Users);
         }
     }
 }
