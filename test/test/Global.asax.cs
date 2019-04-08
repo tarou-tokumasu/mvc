@@ -17,7 +17,8 @@ namespace test
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Database.SetInitializer<MvCContext>(new DropCreateDatabaseAlways<MvCContext>());            
+
+            //参考書通りにsetinitializerしてたがテーブルごと初期化するものなので不要
         }
     }
 }

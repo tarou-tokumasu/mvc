@@ -36,7 +36,7 @@ namespace test.Controllers
         public ActionResult Contact()
         {
 
-            return View(db.Users);
+            return View(db.Members);
         }
     }
 }

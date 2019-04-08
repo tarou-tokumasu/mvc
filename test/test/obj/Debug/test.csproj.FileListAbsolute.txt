@@ -193,8 +193,8 @@ C:\Users\Sigoto\source\repos\mvc\test\test\bin\ja\System.Web.Razor.resources.dll
 C:\Users\Sigoto\source\repos\mvc\test\test\bin\ja\System.Web.WebPages.resources.dll
 C:\Users\Sigoto\source\repos\mvc\test\test\bin\ja\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Sigoto\source\repos\mvc\test\test\bin\ja\System.Web.WebPages.Razor.resources.dll
-C:\Users\Sigoto\source\repos\mvc\test\test\obj\Debug\test.csprojAssemblyReference.cache
 C:\Users\Sigoto\source\repos\mvc\test\test\obj\Debug\test.csproj.CoreCompileInputs.cache
 C:\Users\Sigoto\source\repos\mvc\test\test\obj\Debug\test.csproj.CopyComplete
 C:\Users\Sigoto\source\repos\mvc\test\test\obj\Debug\test.dll
 C:\Users\Sigoto\source\repos\mvc\test\test\obj\Debug\test.pdb
+C:\Users\Sigoto\source\repos\mvc\test\test\obj\Debug\test.csprojAssemblyReference.cache

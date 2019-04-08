@@ -8,6 +8,8 @@ namespace test.Models
 {
     public class MvCContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        //　　　　　入れ物　db上のテーブル
+        public DbSet<Member> Members { get; set; }
+        public DbSet<Item> Items { get; set; }
     }
 }
