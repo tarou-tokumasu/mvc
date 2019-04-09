@@ -1,5 +1,5 @@
 create table Members(id int identity(1,1),
-					Name varchar(20),
+					Name nvarchar(20),
 					Age tinyint,
 					rnd tinyint,
 					loginid varchar(20) unique,
@@ -11,6 +11,11 @@ create table Items(id int identity(1,1),
 					cate tinyint
 					);
 					
-insert into Members values('tanaka',21,123,'admin','pass');
+create table Cates(id int identity(1,1),
+					name nvarchar(10) unique not null
+					);
+insert into Members values(N'“c’†',21,123,'admin','pass');
 insert into items values(N'‚É‚­',300,'meet.png',1);
-drop table items
+insert into cates values(N'H•i');
+insert into cates values(N'ˆù—¿');
+drop table Members

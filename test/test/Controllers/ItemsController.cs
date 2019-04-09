@@ -21,17 +21,26 @@ namespace test.Controllers
         }
 
         // GET: Items/Details/5
-        public ActionResult Details(int? id)
+        //いわゆるrequest.getparametarをここでやれる testは結果nullでも大丈夫 型違い（文字とか）だとnull扱いになる
+        public ActionResult Details(int? id , int?test)
         {
+            if (test == null) {
+                test = 1234;
+            }
             if (id == null)
             {
+                //IDが見つからなかったらエラー400バッドリクエストを返す
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //itemsテーブルからidを元にデータ抽出 select * from items where id=1
             Item item = db.Items.Find(id);
             if (item == null)
             {
+                //見つからなかったら404
                 return HttpNotFound();
             }
+            //抽出したものを返す
+            ViewBag.test = test;
             return View(item);
         }
 
