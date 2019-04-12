@@ -8,6 +8,7 @@ using test.Models;
 namespace test.Controllers
 {
     public class HomeController : Controller
+
     {
         private MvCContext db = new MvCContext();
 
@@ -17,6 +18,13 @@ namespace test.Controllers
         {
             //どれ？ Viewsフォルダの対応したcshtml?
             //その様子　同名ファイルでないとエラー
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index (Item item)
+        {
             return View();
         }
 

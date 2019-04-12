@@ -150,7 +150,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Cate.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\MvCContext.cs" />
     <Compile Include="Models\Member.cs" />

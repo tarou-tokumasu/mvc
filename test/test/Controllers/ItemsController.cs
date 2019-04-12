@@ -53,14 +53,24 @@ namespace test.Controllers
         // POST: Items/Create
         // 過多ポスティング攻撃を防止するには、バインド先とする特定のプロパティを有効にしてください。
         // 詳細については、https://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
+
+        //post定義　必須？
         [HttpPost]
         [ValidateAntiForgeryToken]
+
+        //入力したものをItem型に入れる
         public ActionResult Create([Bind(Include = "Id,name,price,pic,cate")] Item item)
         {
             if (ModelState.IsValid)
             {
+                //ここで入力されたものをもう一捻りできる？→出来た
+                //item.name += "付け足し";
+
+                //dbへ登録・更新　ワンセット？
                 db.Items.Add(item);
                 db.SaveChanges();
+
+                //sendredirect
                 return RedirectToAction("Index");
             }
 
@@ -91,7 +101,9 @@ namespace test.Controllers
         {
             if (ModelState.IsValid)
             {
+                //updateの役割
                 db.Entry(item).State = EntityState.Modified;
+                //ステート合わせて自動で命令発行
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -114,10 +126,14 @@ namespace test.Controllers
         }
 
         // POST: Items/Delete/5
+        //引数が同じで同名メソッド使えないので別名つける
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            //パフォ重視なら
+            //var m = new Item(Id=id);
+            //db.Entry(m).State=EntryState.Deleted;
             Item item = db.Items.Find(id);
             db.Items.Remove(item);
             db.SaveChanges();
