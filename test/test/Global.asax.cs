@@ -17,8 +17,7 @@ namespace test
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            //参考書通りにsetinitializerしてたがテーブルごと初期化するものなので不要
+            
         }
     }
 }

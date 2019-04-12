@@ -1,3 +1,31 @@
-﻿@{
+﻿@model test.Models.Item
+
+@{
     ViewBag.Title = "Home Page";
 }
+
+<p>ビュー研究</p>
+@@Nifty ＠回避
+<br />
+@for (var i = 0; i < 5; i++)
+{
+    //この中はC#の領分
+    @:人気
+    <text>
+        あ
+        い
+        う
+        え
+        お
+    </text>
+    <br />
+}
+
+@*どこでも使えるコメント*@
+
+<h3>フォーム</h3>
+
+@*formはじめ指定しないときは今いるとこのpost行き System.Web.Mvc.Html.MvcFormというメッセージが出る*@
+@Html.BeginForm()
+@Html.Label("name")
+@Html.TextBox("name", "ごんざえもん")

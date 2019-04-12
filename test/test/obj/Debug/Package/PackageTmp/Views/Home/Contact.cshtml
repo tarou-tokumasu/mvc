@@ -1,4 +1,4 @@
-﻿@model IEnumerable<test.Models.Member>
+﻿@model IEnumerable<test.Models.Cate>
 @{
     ViewBag.Title = "Contact";
 }
@@ -7,13 +7,12 @@
 
 <table class="table">
 <tr>
-    <th>名前</th><th>年齢</th>
+    <th>名前</th><th>年齢</th><th>id</th>
 </tr>
     @foreach (var p in Model)
     {
         <tr>
             <td>@p.Name</td>
-            <td>@p.Age</td>
         </tr>
     }
 </table>

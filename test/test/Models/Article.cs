@@ -11,6 +11,8 @@ namespace test.Models
     {
         public int Id { set; get; }
 
+        [Required]
+        //ここで設定しておくとスキャフォールディング時にそれに合ったものにしてくれる
         [DisplayName("URL")]
         [DataType(DataType.Url)]
         public string Url { set; get; }
@@ -38,5 +40,8 @@ namespace test.Models
         //1:nのリレーション
         [DisplayName("コメント")]
         public virtual ICollection<Comment> Comments { set; get; }
+
+        [DisplayName("著者")]
+        public virtual ICollection<Author> Authors { set; get; }
 }
 }

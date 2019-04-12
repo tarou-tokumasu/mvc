@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace test.Models
 {
-            //何故ここに
+            //これは一体
             [DisplayColumn("Body")]
 
 public class Comment
@@ -18,11 +18,10 @@ public class Comment
         public string Body { set; get;}
 
         [DisplayName("更新日")]
+        [DisplayFormat(DataFormatString ="{0:yyyy年 MM月 dd日}")]
         public DateTime Updated { set; get; }
 
-        //紐づけ？
-        public int? ArticleId { get; set; }
-
+        //1:nの関係の時
         [DisplayName("記事")]
         public virtual Article Article { set; get; }
 }
