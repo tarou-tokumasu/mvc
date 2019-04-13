@@ -1,6 +1,5 @@
 create table Members(id int identity(1,1),
 					Name nvarchar(20),
-					Age tinyint,
 					rnd tinyint,
 					loginid varchar(20) unique,
 					password varchar(20) not null);
@@ -27,4 +26,6 @@ insert into Members values(N'“c’†',21,123,'admin','pass');
 insert into items values(N'‚É‚­',300,'meet.png',1);
 insert into cates values(N'H•i');
 insert into cates values(N'ˆù—¿');
-drop table Games
+insert into Articles()
+insert into Comments (name,body,updated,Article_id)values('taro','test',2019/04/04,1);
+drop table items

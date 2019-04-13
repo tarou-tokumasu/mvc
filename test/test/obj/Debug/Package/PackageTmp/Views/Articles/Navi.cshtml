@@ -1,0 +1,26 @@
+﻿@model test.Models.Article
+
+@{
+    ViewBag.Title = "Navi";
+}
+
+<h2>Navi</h2>
+
+<d1 class="dl-horizontal">
+    <dt>@Html.DisplayNameFor(model => model.Title)</dt>
+    <dd>@Html.DisplayFor(model =>model.Title)</dd>
+    <dt>@Html.DisplayNameFor(model => model.Authors)</dt>
+    @*これで著者呼ぶにはどうしたら*@
+    <dd>@Html.DisplayFor(model=>model.Authors)</dd>
+</d1>
+@*紐付けたデータの呼び方　これで勝手に呼んでくれるのはスゴイ*@
+@foreach(var author in Model.Authors)
+{
+    <p>著者</p>
+    <li>@author.Name</li>
+}
+<hr />
+@foreach(var comment in Model.Comments)
+{
+    <li>@comment.Body</li>
+}

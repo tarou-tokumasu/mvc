@@ -12,12 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            <!--カラム名-->
             @Html.DisplayNameFor(model => model.name)
         </th>
         <th>
-            <!--変えるならこう-->
-            @Html.DisplayName("書き換え")
+            @Html.DisplayNameFor(model => model.price)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.pic)
@@ -31,7 +29,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <!--＠item.nameと違うのはデータ型にあった表示方法になる-->
             @Html.DisplayFor(modelItem => item.name)
         </td>
         <td>
@@ -44,14 +41,9 @@
             @Html.DisplayFor(modelItem => item.cate)
         </td>
         <td>
-            <!--/Item/Edit/108/なURLが生まれる-->
-            <!--Items/Edit?id=108でも動作する-->
-            <!--これだとItems/Edit/1?test=1-->
-            @Html.ActionLink("えでぃと", "Edit", new { id = item.Id, test = 1 }) |
-            <!--これはItems/Detail?test=1 エラー-->
-            @Html.ActionLink("test", "Details", new { test = 1 }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

@@ -10,10 +10,10 @@
     <dt>@Html.DisplayNameFor(model => model.Title)</dt>
     <dd>@Html.DisplayFor(model =>model.Title)</dd>
     <dt>@Html.DisplayNameFor(model => model.Authors)</dt>
+    @*これで著者呼ぶにはどうしたら*@
     <dd>@Html.DisplayFor(model=>model.Authors)</dd>
 </d1>
 @*紐付けたデータの呼び方　これで勝手に呼んでくれるのはスゴイ*@
-@*TODO:displayforの使い方ちゃんと覚える*@
 @foreach(var author in Model.Authors)
 {
     <p>著者</p>
