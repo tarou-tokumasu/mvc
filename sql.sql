@@ -10,7 +10,7 @@ create table Products(id int identity(1,1),
 					Categoly_Id int
 					);
 					
-create table Categolies(id int identity(1,1),
+create table Categories(id int identity(1,1),
 					name nvarchar(10) unique not null
 					);
 					
@@ -24,6 +24,6 @@ create table Articles (id int identity(1,1),
 						comments int  );
 insert into Members values(N'“c’†',21,123,'admin','pass');
 insert into Products values(N'“÷',300,'meet.png',1);
-insert into Categolies values(N'H•i');
-drop table Products;
+insert into Categories values(N'ˆù—¿');
+drop table categolies;
 drop table  __MigrationHistory ;

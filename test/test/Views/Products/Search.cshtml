@@ -1,0 +1,68 @@
+﻿@model IEnumerable<test.Models.ProCate>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+
+
+<h2>商品一覧</h2>
+
+<p class="text-danger">@TempData["system"]</p>
+
+<h4>検索フォーム</h4>
+@using (Html.BeginForm("Search", "Products", FormMethod.Get, new { @class = "form-inline" }))
+{
+    @Html.Label("keyword", "キーワード：", new { @class = "control-label" })
+    @Html.TextBox("keyword", null, new { @class = "form-control" })
+    <input type="submit" value="検索" class="btn btn-default" />
+}
+<hr />
+
+<table class="table">
+    <tr>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th class="text-center">
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th></th>
+    </tr>
+
+    @*
+        エラー2
+            Invalid object name 'dbo.Categories'.
+            ActionResultのとこでjoinを使った時に発生
+            →誤字修正の際にdb名だけ変わらなかったため
+    *@
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="text-right">
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td class="text-center">
+                @*
+                    エラー
+                    この Command に関連付けられている DataReader が既に開かれています。このコマンドを最初に閉じる必要があります。
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                    カテゴリ名まで絡んでいけない　Indexの時との差は？returnの仕方が違う　db.Products.ToList()→view(sresult)
+                    LINQのjoinで結合して新しい入れ物ProCateに入れ1モデルにまとめたら動作した
+                *@
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td class="text-center">
+                @Html.ActionLink("詳細", "Details", new { id = item.Id }) |
+                @Html.ActionLink("カートに追加", "Add", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>

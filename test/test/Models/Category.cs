@@ -7,7 +7,7 @@ using System.Web;
 
 namespace test.Models
 {
-    public class Categoly
+    public class Category
     {
         public int Id { set; get; }
         [Required]

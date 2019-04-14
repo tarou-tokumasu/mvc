@@ -7,48 +7,61 @@
 
 <h2>カート</h2>
 
-@if (Model.Count()==0)
-    {
+@if (Model.Count() == 0)
+{
         <p>カートに何も入ってません</p>
-    }
-    else
-    {
+}
+else
+{
         <table class="table">
             <tr>
-                <th>
+                <th class="text-center">
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
-                <th>
+                <th class="text-center">
                     @Html.DisplayNameFor(model => model.Price)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Categoly.Name)
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.Number)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                <th class="text-center">
+                    小計
                 </th>
                 <th>
 
                 </th>
             </tr>
-            @foreach (var item in Model)
-            {
+            @{ decimal cTotal = 0;}
+
+                @foreach (var item in Model)
+                {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
-                <td>
+                <td class="text-right">
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
-                <td>
-                    @*上の形式だとエラー*@
-                    @item.Name
+                <td class="text-right">
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td class="text-right">
+                    @*item.numberとか指定しなくても計算できないものか→出来た
+                      このforeachループ中ならメソッド呼べるがそこから外れたら無理？*@
+                    @item.GetsubTotal()
+                    @{ cTotal+= item.Number * item.Price;}
+
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    @Html.ActionLink("削除", "Delete", new { id = item.Id })
                 </td>
             </tr>
             }
+            <tr>
+                <td></td><td></td><td></td>
+                <td class="text-right">@string.Format("{0:c}",cTotal)</td>
+                <td></td>
+            </tr>
 
         </table>
             }
