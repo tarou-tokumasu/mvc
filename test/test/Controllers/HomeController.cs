@@ -21,12 +21,7 @@ namespace test.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Index (Item item)
-        {
-            return View();
-        }
+
 
         // home/About/
         //_Layout.cshtmlで用意したパラメータ受け取るのはここで
@@ -46,7 +41,7 @@ namespace test.Controllers
             Session["test"]="contactにアクセスしました";
 
             //ToListつけるとここの時点でdbに問い合わせる　省くとforeachで呼んだ時に問い合わせる
-            return View(db.Cates.ToList());
+            return View();
         }
     }
 }

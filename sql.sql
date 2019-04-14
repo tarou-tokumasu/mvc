@@ -3,14 +3,14 @@ create table Members(id int identity(1,1),
 					rnd varchar(8),
 					password varchar(64) not null
 					);
-create table Items(id int identity(1,1),
+create table Products(id int identity(1,1),
 					name nvarchar(50) unique not null, 
 					price decimal not null,
 					pic varchar(20)not null unique,
-					cate tinyint
+					Categoly_Id int
 					);
 					
-create table Cates(id int identity(1,1),
+create table Categolies(id int identity(1,1),
 					name nvarchar(10) unique not null
 					);
 					
@@ -23,8 +23,7 @@ create table Articles (id int identity(1,1),
 						released bit,
 						comments int  );
 insert into Members values(N'田中',21,123,'admin','pass');
-insert into items values(N'にく',300,'meet.png',1);
-insert into cates values(N'食品');
-insert into cates values(N'飲料');
-drop table members;
+insert into Products values(N'肉',300,'meet.png',1);
+insert into Categolies values(N'食品');
+drop table Products;
 drop table  __MigrationHistory ;
