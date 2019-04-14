@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="MvC-Web.config Connection String" description="MvC データベースに接続するためにアプリケーションによって web.config で使用される接続文字列。" defaultValue="Data Source=tcp:learntestserver.database.windows.net,1433;Initial Catalog=User;Persist Security Info=False;User ID=rsrsrs96;Password=yoko6135!;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Sigoto\\source\\repos\\mvc\\test\\test\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='MvC']/@connectionString" />
-  </parameter>
-</parameters>

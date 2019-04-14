@@ -24,21 +24,44 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!--リンク飛ばす    テキスト   ｱｸｼｮﾝ　ｺﾝﾄﾛｰﾗ　アクション先への変数引き渡し（urlに?test=11みたいに渡される-->
-                @Html.ActionLink("ECサイト", "Index", "Home", new { test ="11" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("ECサイト", "Index", "Home", new { test = "11" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <!--HomeコントローラのIndexアクションに飛ぶ-->
                     <li>@Html.ActionLink("ホーム", "Index", "Home")</li>
                     <!--
-                         これだとエラー 上のtest=11はセーフurlに?length=4と出ていた
-                         new～を入れた文は別の構成になるのでnull入れてやる
-                         <li>@Html.ActionLink("詳細", "About", "Home" , new { test = "11" })</li>
-                    -->
+         これだとエラー 上のtest=11はセーフurlに?length=4と出ていた
+         new～を入れた文は別の構成になるのでnull入れてやる
+         <li>@Html.ActionLink("詳細", "About", "Home" , new { test = "11" })</li>
+    -->
                     <li>@Html.ActionLink("詳細", "About", "Home", new { test = "1" }, null)</li>
                     <li>@Html.ActionLink("メンバ", "Index", "Members", new { test = "1" }, null)</li>
+                    @if (Session["login"] == null)
+                    {
+                        <li>@Html.ActionLink("ログイン", "Login", "Members")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("ログアウト", "Logout", "Members")</li>
+                    }
+
                     <li>@Html.ActionLink("問い合わせ", "Contact", "Home")</li>
+                    @if (Session["test"] == null)
+                    {
+                        <li class="navbar-text">null</li>
+                    }
+                    else
+                    {
+                        <li class="navbar-text">@Session["test"]</li>
+                    }
+                    @if (Session["loginID"] != null)
+                    {
+                        <li class="navbar-text">@Session["loginID"]さん</li>
+                    }
+                    /**/
                 </ul>
+
             </div>
         </div>
     </div>
@@ -46,10 +69,9 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>ここがフッター</p>
+            <p>footer</p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

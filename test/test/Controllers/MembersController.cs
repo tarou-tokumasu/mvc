@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using test.Models;
@@ -19,9 +21,67 @@ namespace test.Controllers
         {
             return View(db.Members.ToList());
         }
+        
+        public ActionResult LogIn()
+        {
+            return View();
+        }
 
-        // GET: Members/Details/5
-        public ActionResult Details(int? id)
+        //ログアウト
+        public ActionResult Logout()
+        {
+            Session.Remove("login");
+            Session.Remove("loginID");
+            return RedirectToAction("Index", "Home");
+        }
+        //ログイン判定
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login([Bind(Include = "Password,Loginid")] Member member)
+        {
+            //1件取り出したい時に
+            var dbMember = db.Members.SingleOrDefault(
+                a => a.Loginid == member.Loginid);
+
+            if (dbMember == null)
+            {
+                Session["test"] = "存在しないID";
+                return View();
+            }
+                else
+                {
+                //パス認証
+                var h = GetHash(dbMember.Rnd + member.Loginid);
+                h = GetHash(h + member.Password);
+
+                dbMember = db.Members.SingleOrDefault(
+                    a => a.Password == h);
+
+                if (dbMember == null)
+                {
+                    Session["test"] = "パスワードが違う";
+                }
+                    else {
+                             Session["test"] = "ログイン成功";
+                             Session["login"] = dbMember;
+                            //TODO:_Layout.cshtmlで@modelが上手く扱えない
+                             Session["loginID"] = dbMember.Loginid;
+
+                             //システムメッセージに便利そう
+                            TempData["success"] = "ログインに成功しました";
+                            //return忘れずに 1つ指定で現在のコントローラー 2つ指定で別のコントローラに
+                             return RedirectToAction("Index","Home");
+                        }
+
+                
+            }
+
+            return View();
+        }
+
+
+            // GET: Members/Details/5
+            public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -46,16 +106,41 @@ namespace test.Controllers
         // 詳細については、https://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,LoginID,Rnd")] Member member)
+        public ActionResult Create([Bind(Include = "Id,Password,Loginid")] Member member)
         {
             if (ModelState.IsValid)
             {
+                //ランダム文字列作ってテーブルに保存
+                Guid g = System.Guid.NewGuid();
+                member.Rnd = g.ToString("N").Substring(0, 8);
+                
+                //上のランダム+loginIDで暗号化
+                var h = GetHash(member.Rnd + member.Loginid);
+
+                //上の暗号化したもの+パスワードで暗号化
+                member.Password = GetHash(h + member.Password);
+                
                 db.Members.Add(member);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return View(member);
+        }
+
+        public string GetHash(string str)
+        {
+            byte[] byteValues = Encoding.UTF8.GetBytes(str);
+            SHA256 crypto256 = new SHA256CryptoServiceProvider();
+            byte[] hash256Value = crypto256.ComputeHash(byteValues);
+
+            StringBuilder hashedText = new StringBuilder();
+            for (int i = 0; i < hash256Value.Length; i++)
+            {
+                
+                hashedText.AppendFormat("{0:X2}", hash256Value[i]);
+            }
+            return hashedText.ToString();
         }
 
         // GET: Members/Edit/5
@@ -78,7 +163,7 @@ namespace test.Controllers
         // 詳細については、https://go.microsoft.com/fwlink/?LinkId=317598 を参照してください。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,LoginID,Rnd")] Member member)
+        public ActionResult Edit([Bind(Include = "Id,Password,Loginid")] Member member)
         {
             if (ModelState.IsValid)
             {

@@ -1,8 +1,8 @@
 create table Members(id int identity(1,1),
-					Name nvarchar(20),
-					rnd tinyint,
 					loginid varchar(20) unique,
-					password varchar(20) not null);
+					rnd varchar(8),
+					password varchar(64) not null
+					);
 create table Items(id int identity(1,1),
 					name nvarchar(50) unique not null, 
 					price decimal not null,
@@ -26,6 +26,5 @@ insert into Members values(N'“c’†',21,123,'admin','pass');
 insert into items values(N'‚É‚­',300,'meet.png',1);
 insert into cates values(N'H•i');
 insert into cates values(N'ˆù—¿');
-insert into Articles()
-insert into Comments (name,body,updated,Article_id)values('taro','test',2019/04/04,1);
-drop table items
+drop table members;
+drop table  __MigrationHistory ;

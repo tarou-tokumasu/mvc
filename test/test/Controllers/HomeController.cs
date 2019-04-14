@@ -43,7 +43,8 @@ namespace test.Controllers
         // home/Contact
         public ActionResult Contact()
         {
-            //TODO: これでcshtmlの方でカテゴリ一覧が見れるが複数のテーブル送るには？
+            Session["test"]="contactにアクセスしました";
+
             //ToListつけるとここの時点でdbに問い合わせる　省くとforeachで呼んだ時に問い合わせる
             return View(db.Cates.ToList());
         }
