@@ -32,6 +32,7 @@ namespace test.Controllers
         {
             Session.Remove("login");
             Session.Remove("loginID");
+            TempData["success"] = "ログアウトしました";
             return RedirectToAction("Index", "Home");
         }
         //ログイン判定

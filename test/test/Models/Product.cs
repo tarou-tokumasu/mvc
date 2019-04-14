@@ -12,7 +12,10 @@ namespace test.Models
 
         [Required]
         public string Name { set; get; }
+
+        [DisplayFormat(DataFormatString = "{0:c}", ApplyFormatInEditMode = true)]
         public decimal Price { set; get; }
+
         public virtual Categoly Categoly { set; get; }
         public string Pic { set; get; }
     }

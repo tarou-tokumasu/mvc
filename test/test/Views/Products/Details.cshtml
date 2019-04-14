@@ -23,6 +23,7 @@
         </dt>
 
         <dd>
+            
             @Html.DisplayFor(model => model.Price)
         </dd>
 
@@ -31,7 +32,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Pic)
+            <img src="~/Img/@Html.DisplayFor(model => model.Pic)" />
         </dd>
 
         <dt>
@@ -39,13 +40,13 @@
         </dt>
 
         <dd>
-            @*リレーになってる*@
+            @*ちゃんとカテゴリ名が表示された*@
             @Html.DisplayFor(model => model.Categoly.Name)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("カートに追加", "Add", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

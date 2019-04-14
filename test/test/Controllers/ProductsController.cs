@@ -14,6 +14,52 @@ namespace test.Controllers
     {
         private MvCContext db = new MvCContext();
 
+        //カート
+        public ActionResult Cart()
+        {
+            //もうちょっとスマートにできそう
+            List<Cart> li = (List<Cart>)Session["cart"];
+
+            if (li == null)
+            {
+                li = new List<Cart>();
+                Session["test"] = "カート作成しました";
+                Session["cart"] = li;
+            }
+
+            
+            return View(li);
+        }
+
+        public ActionResult Add(int? id)
+        {
+            //カートの中身はli
+            List<Cart> li = (List<Cart>)Session["cart"];
+
+            //なかったら作る
+            if (li == null)
+            {
+                li = new List<Cart>();
+                Session["test"] = "カート作成しました";
+                Session["cart"] = li;
+            }
+
+            //商品情報取得
+            Product product = db.Products.Find(id);
+            
+            //その商品が既にカートに入ってるか？
+            var query =li.Where(x => x.Id == product.Id);
+            if (query.Count() == 0)
+            {
+                //パターン入ってたら　これで個数以外うまく引き継げてる？
+                Cart cartitem = (Cart)product;
+                cartitem.Number = 1;
+                li.Add(cartitem);
+            }
+            Session["cart"] = li;
+            return RedirectToAction("Index");
+        }
+
         // GET: Products
         public ActionResult Index()
         {
