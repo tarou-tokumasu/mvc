@@ -160,12 +160,15 @@
     <Compile Include="Models\AesCryptgraphy.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Author.cs" />
+    <Compile Include="Models\Buy.cs" />
+    <Compile Include="Models\BuyDetail.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\MvCContext.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\ProCate.cs" />
+    <Compile Include="Models\ProDet.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -237,6 +240,8 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Cart.cshtml" />
     <Content Include="Views\Products\Search.cshtml" />
+    <Content Include="Views\Members\History.cshtml" />
+    <Content Include="Views\Members\BuyDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

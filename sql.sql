@@ -22,8 +22,20 @@ create table Articles (id int identity(1,1),
 						published datetime,
 						released bit,
 						comments int  );
+						
+create table Buys(id int identity(1,1),
+					UserID int,
+					BuyDate DateTime
+					);
+create table BuyDetails(id int identity(1,1),
+						BuyID int,
+						ProductID int,
+						Price decimal,
+						Number int	
+					);
 insert into Members values(N'“c’†',21,123,'admin','pass');
 insert into Products values(N'“÷',300,'meet.png',1);
 insert into Categories values(N'ˆù—¿');
 drop table categolies;
 drop table  __MigrationHistory ;
+alter table BuyDetails alter column Number tinyint;

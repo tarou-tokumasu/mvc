@@ -1,0 +1,29 @@
+﻿@model IEnumerable<test.Models.Buy>
+
+@{
+    ViewBag.Title = "History";
+}
+
+<h2>History</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyDate)
+        </td>
+        <td>
+            @Html.ActionLink("詳細", "BuyDetail", new { id=item.Id }) 
+        </td>
+    </tr>
+}
+
+</table>

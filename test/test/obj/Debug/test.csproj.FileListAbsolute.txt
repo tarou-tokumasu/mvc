@@ -197,3 +197,4 @@ C:\Users\Sigoto\source\repos\mvc\test\test\obj\Debug\test.csproj.CoreCompileInpu
 C:\Users\Sigoto\source\repos\mvc\test\test\obj\Debug\test.csproj.CopyComplete
 C:\Users\Sigoto\source\repos\mvc\test\test\obj\Debug\test.dll
 C:\Users\Sigoto\source\repos\mvc\test\test\obj\Debug\test.pdb
+C:\Users\Sigoto\source\repos\mvc\test\test\obj\Debug\test.csprojAssemblyReference.cache

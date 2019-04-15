@@ -27,6 +27,34 @@ namespace test.Controllers
             return View();
         }
 
+        //履歴詳細         　アクション名は最初に名付けたとこからコピペ
+        public ActionResult BuyDetail(int? id)
+        {
+            var li = from a in db.BuyDetails
+                     join b in db.Products
+                     on  a.ProductID equals b.Id
+                     where a.BuyID == id
+                     select new ProDet
+                     {
+                         Name=b.Name,
+                         Price=a.Price,
+                         Number = a.Number
+                     };
+            return View(li);
+        }
+        //履歴
+        public ActionResult History()
+        {
+            //ここでint型に入れずfrom内でセッションを直指定したらエラー
+            int aaa = (int)Session["login"];
+
+            var li = from a in db.Buys
+                      where a.UserID == aaa
+                      select a;
+
+            return View(li);
+        }
+
         //ログアウト
         public ActionResult Logout()
         {
@@ -64,7 +92,7 @@ namespace test.Controllers
                 }
                     else {
                              Session["test"] = "ログイン成功";
-                             Session["login"] = dbMember;
+                             Session["login"] = dbMember.Id;
                             //TODO:_Layout.cshtmlで@modelが上手く扱えない
                              Session["loginID"] = dbMember.Loginid;
 

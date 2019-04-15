@@ -14,6 +14,52 @@ namespace test.Controllers
     {
         private MvCContext db = new MvCContext();
 
+        //購入
+        public ActionResult Confirm()
+        {
+            //メソッド化した方がいいかも
+            List<Cart> li = (List<Cart>)Session["cart"];
+            
+            if (Session["login"] ==null)
+            {
+                return RedirectToAction("Login", "Members");
+            }
+            
+            int UserID = (int)Session["login"];
+
+            //いつどのユーザーが買ったか
+            Buy b = new Buy() { 
+                UserID = UserID,
+                BuyDate = DateTime.Now //ulcnowだと大分違う時間になった　サーバーの位置のせい？
+                };
+            db.Buys.Add(b);
+            db.SaveChanges();
+
+            //TODO:今追加したものの自動採番idが欲しい　javaのgetGeneratedKeys的なもの無い？
+            //とりあえず自分のIDで最後に入れたものを取得
+            //エラー　LINQ to Entities does not recognize the method 'Int32 Last[Int32](System.Linq.IQueryable`1[System.Int32])' method, and this method cannot be translated into a store expression.
+            //LastをFirstにして並び替える事でエラー回避
+            var bid = (from a in db.Buys
+                       where a.UserID == UserID
+                       orderby a.Id descending
+                       select a.Id).First();
+            BuyDetail bd = new BuyDetail();
+
+            foreach (var p in li)
+            {
+                bd.BuyID = bid;
+                bd.ProductID = p.Id;
+                bd.Number = p.Number;
+                bd.Price = p.Price;
+                db.BuyDetails.Add(bd);
+                db.SaveChanges();
+                //追加したらすぐchangeしないと最後の1回分しか登録されなかった
+            }
+
+            Session.Remove("Cart");
+            return RedirectToAction("Index", "Home");
+        }
+
         //検索
         public ActionResult Search(string keyword)
         {

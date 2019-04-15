@@ -1,0 +1,51 @@
+﻿@model IEnumerable<test.Models.ProDet>
+
+@{
+    ViewBag.Title = "BuyDetail";
+}
+
+<h2>BuyDetail</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th >
+            @Html.DisplayNameFor(model => model.Number)
+        </th>
+        <th>
+            @Html.Label("小計")
+        </th>
+    </tr>
+    @{ decimal cTotal = 0;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @item.GetsubTotal()
+                @{ cTotal += item.Number * item.Price;}
+            </td>
+        </tr>
+    }
+    <tr>
+        <td></td>
+        <td></td>
+        <td>@Html.Label("合計")</td>
+        <td>@string.Format("{0:c}", cTotal)</td>
+        <td></td>
+    </tr>
+</table>

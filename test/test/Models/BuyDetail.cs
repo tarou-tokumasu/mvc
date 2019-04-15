@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -12,6 +13,7 @@ namespace test.Models
         public int BuyID { set; get; }
         public int ProductID { set; get; }
         public decimal Price { set; get; }
-        public int Number { set; get; }
+        public byte Number { set; get; }
+        
     }
 }

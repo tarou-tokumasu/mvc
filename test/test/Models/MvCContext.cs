@@ -11,6 +11,9 @@ namespace test.Models
         public DbSet<Member> Members { set; get; }
         public DbSet<Product> Products { set; get; }
         public DbSet<Category> Categories { set; get; }
+        public DbSet<Buy> Buys { set; get; }
+        public DbSet<BuyDetail> BuyDetails { set; get; }
+        
 
         //azureやA5の方でデータ入れる際はN'とまと'と打たないと文字化けした　スキャフォールディングのcreateでは問題なし
         //TODO:membersは勝手にdb作ってくれたが（コードファースト）作ってくれずテーブルが見つからないとエラー吐く場合もある　なぜか
